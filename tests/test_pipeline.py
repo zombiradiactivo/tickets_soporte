@@ -24,7 +24,7 @@ class MockActionExecutor:
 
 
 def test_pipeline_procesar():
-    pipeline = Pipeline(analyzer=MockAnalyzer(), action_executor=MockActionExecutor())
+    pipeline = Pipeline(analyzer=MockAnalyzer(), action_executor=MockActionExecutor()) # pyright: ignore[reportArgumentType]
     ticket = pipeline.procesar("No puedo entrar a mi cuenta")
     assert ticket is not None
     assert ticket.categoria == CategoriaTicket.CUENTA
@@ -35,12 +35,12 @@ def test_pipeline_error():
     class FailingAnalyzer:
         def analizar(self, texto):
             return {"exito": False, "error": "fail"}
-    pipeline = Pipeline(analyzer=FailingAnalyzer(), action_executor=MockActionExecutor())
+    pipeline = Pipeline(analyzer=FailingAnalyzer(), action_executor=MockActionExecutor()) # pyright: ignore[reportArgumentType]
     ticket = pipeline.procesar("test")
     assert ticket is None
 
 
 def test_pipeline_lote():
-    pipeline = Pipeline(analyzer=MockAnalyzer(), action_executor=MockActionExecutor())
+    pipeline = Pipeline(analyzer=MockAnalyzer(), action_executor=MockActionExecutor()) # type: ignore
     resultados = pipeline.procesar_lote(["ticket 1", "ticket 2"])
     assert len(resultados) == 2

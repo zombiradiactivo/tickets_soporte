@@ -1,5 +1,7 @@
 # Sistema de Análisis de Tickets de Soporte con NLP (Ollama)
 
+![CI Pipeline](https://github.com/zombiradiactivo/tickets_soporte/actions/workflows/ci.yml/badge.svg)
+
 ## 📋 Descripción
 
 Sistema que utiliza NLP para analizar automáticamente tickets de soporte usando **modelos locales de Ollama** (gratuito, sin API keys). Clasifica por categoría, urgencia, extrae entidades y sugiere acciones.

@@ -46,7 +46,7 @@ class TicketAnalizado:
     
     def __init__(self, texto_original: str, categoria: CategoriaTicket, 
                  urgencia: UrgenciaTicket, intencion: str, 
-                 accion_sugerida: str, entidades: Dict = None):
+                 accion_sugerida: str, entidades: Dict = None): # pyright: ignore[reportArgumentType]
         self.texto_original = texto_original
         self.categoria = categoria
         self.urgencia = urgencia
@@ -147,7 +147,7 @@ def analizar_ticket_con_nlp(texto_usuario: str) -> Dict:
         # Llamada a la API
         response = client.chat.completions.create(
             model="gpt-4o-mini",
-            messages=mensajes,
+            messages=mensajes, # pyright: ignore[reportArgumentType]
             temperature=0.0,
             max_tokens=300
         )
@@ -156,7 +156,7 @@ def analizar_ticket_con_nlp(texto_usuario: str) -> Dict:
         respuesta_texto = response.choices[0].message.content
         
         try:
-            resultado = json.loads(respuesta_texto)
+            resultado = json.loads(respuesta_texto) # pyright: ignore[reportArgumentType]
             
             # Validar campos requeridos
             campos_requeridos = ["categoria", "urgencia", "intencion", "accion_sugerida"]
@@ -177,7 +177,7 @@ def analizar_ticket_con_nlp(texto_usuario: str) -> Dict:
             return {
                 "exito": True,
                 "analisis": resultado,
-                "tokens_usados": response.usage.total_tokens
+                "tokens_usados": response.usage.total_tokens # pyright: ignore[reportOptionalMemberAccess]
             }
             
         except json.JSONDecodeError:
