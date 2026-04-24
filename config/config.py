@@ -1,0 +1,2 @@
+OLLAMA_HOST= "http://10.46.191.232:11434"
+MODEL_NAME="qwen3.5:2b"
